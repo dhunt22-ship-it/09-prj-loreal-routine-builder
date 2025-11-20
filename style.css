@@ -1,255 +1,506 @@
-/* —— basic reset —— */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* --- Global & Typography Reset --- */
+:root {
+    --loreal-red: #ff3333;
+    --loreal-dark: #1f1f1f;
+    --loreal-light: #f4f4f4;
+    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --shadow-deep: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* —— body + fonts —— */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
 body {
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  color: #333;
-  display: flex;
-  justify-content: center;
+  /* Set the background image using the relative path (since it's in the same folder) */
+  background-image: url('Screenshot 2025-11-19 194632.png');
+
+  /* Optional: Add these lines to ensure the background covers the entire viewport */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps the background static when scrolling */
 }
 
 .page-wrapper {
-  width: 90%;
-  max-width: 900px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* header */
+h1 {
+    font-weight: 700;
+    color: var(--loreal-dark);
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--loreal-dark);
+}
+
+/* Visually hidden utility for accessibility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* --- Header and Branding --- */
 .site-header {
-  text-align: center;
-  padding-top: 50px;
-  padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 2px solid var(--loreal-red);
+    margin-bottom: 20px;
+    background-color: white; /* Ensure header has a solid background over the page image */
+    z-index: 10; /* Ensure it stays above other content */
+    position: relative;
 }
 
 .logo {
-  width: 250px;
-  margin-bottom: 15px;
+    height: 40px; /* Adjust size as needed */
+    margin-right: 15px;
 }
 
 .site-title {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 10px;
+    font-size: 1.8em;
+    font-weight: 700;
 }
 
-/* category filter */
+/* --- Search and Filter Section --- */
 .search-section {
-  margin: 30px 0;
-  display: flex;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+    background-color: white; /* Ensure search has a solid background over the page image */
+    padding: 15px 20px; /* Added padding for better visual separation */
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    z-index: 5; /* Ensure it stays above the main background */
+    position: relative;
 }
 
-.search-section select {
-  width: 100%;
-  padding: 16px;
-  font-size: 18px;
-  border: 2px solid #000;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: white;
-  font-weight: 500;
+.search-field-wrapper {
+    position: relative;
+    flex-grow: 1;
 }
 
-.search-section select:focus {
-  outline: none;
-  border-color: #666;
+#productSearchInput {
+    padding: 10px 10px 10px 35px; /* Padding for the icon */
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
 }
 
-/* chat section */
-.chatbox {
-  margin: 40px 0;
-  border: 2px solid #000;
-  border-radius: 8px;
-  padding: 26px;
+.search-field-wrapper .fa-magnifying-glass {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #999;
 }
 
-.chatbox h2 {
-  font-size: 20px;
-  margin-bottom: 20px;
+#categoryFilter {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 1em;
 }
 
-.chat-window {
-  padding: 20px;
-  font-size: 18px;
-  line-height: 1.5;
-  height: 250px;
-  overflow-y: auto;
-  background: #fafafa;
-  margin-bottom: 20px;
-}
-
-/* placeholder message */
-.placeholder-message {
-  width: 100%;
-  text-align: center;
-  padding: 40px;
-  color: #666;
-  font-size: 18px;
-}
-
-/* input row */
-.chat-form {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.chat-form input {
-  flex: 1;
-  padding: 12px;
-  font-size: 18px;
-  border: none;
-  border-bottom: 2px solid #ccc;
-  background: transparent;
-}
-
-.chat-form input:focus {
-  outline: none;
-  border-bottom-color: #000;
-}
-
-.chat-form button {
-  font-size: 18px;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 12px;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.chat-form button:hover {
-  background: #666666;
-}
-
-.chat-form button:focus {
-  outline: 2px solid #000;
-  outline-offset: 2px;
-}
-
-/* visually hidden */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* footer */
-.site-footer {
-  margin: 60px 0 40px;
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-}
-
-.site-footer nav {
-  margin-top: 12px;
-}
-
-.site-footer a {
-  margin: 0 8px;
-  color: #000;
-  text-decoration: none;
-}
-
-.site-footer a:hover {
-  color: #666666;
-}
-
-/* products grid */
+/* --- Products Grid --- */
 .products-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin: 30px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+    align-items: stretch; 
 }
 
 .product-card {
-  flex: 0 1 calc(33.333% - 14px);
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 4px;
-  display: flex;
-  gap: 15px;
-  min-height: 160px;
+    background: white; /* Cards will be solid white, hiding background image behind them */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    display: flex; 
+    flex-direction: column;
+    height: auto;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-deep);
+}
+
+.product-card.selected {
+    border-color: var(--loreal-red);
+    box-shadow: 0 0 0 3px rgba(255, 51, 51, 0.4);
+}
+
+.product-img-wrapper {
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-shrink: 0; 
 }
 
 .product-card img {
-  width: 110px;
-  height: 110px;
-  object-fit: contain;
-  flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.product-card .product-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 110px;
+.product-info {
+    padding: 10px;
+    text-align: left;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+    flex-grow: 1; 
 }
 
-.product-card h3 {
-  font-size: 16px;
-  margin-bottom: 8px;
+.product-info h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 5px;
 }
 
-.product-card p {
-  font-size: 14px;
-  color: #666;
+.product-info .brand {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
 }
 
-/* selected products */
+.product-description {
+    padding: 10px;
+    font-size: 0.85em;
+    color: #333;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s;
+    background-color: white;
+}
+
+.product-card.expanded {
+    height: auto; /* Allow card to expand */
+}
+
+.product-card.expanded .product-description {
+    max-height: 500px; /* Increased max-height for full visibility */
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+.description-toggle {
+    background: none;
+    border: none;
+    color: var(--loreal-red);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85em;
+    padding: 0;
+}
+
+/* --- Selected Products --- */
 .selected-products {
-  margin: 40px 0;
-  padding: 20px;
-  border: 2px solid #000;
-  border-radius: 8px;
-}
-
-.selected-products h2 {
-  font-size: 20px;
-  margin-bottom: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-deep);
+    margin-bottom: 30px;
+    z-index: 5; /* Ensure it stays above the main background */
+    position: relative;
 }
 
 #selectedProductsList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 40px;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.selected-product-tag {
+    display: flex;
+    align-items: center;
+    background-color: var(--loreal-red);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.remove-tag-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 8px;
+    padding: 0;
 }
 
 .generate-btn {
-  width: 100%;
-  margin-top: 20px;
-  padding: 16px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #fff;
-  background: #000;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
+    background-color: var(--loreal-red);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .generate-btn:hover {
-  background: #666;
+    background-color: #e03030;
 }
 
-.generate-btn i {
-  margin-right: 8px;
+/* --- Chat Box --- */
+.chatbox {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-deep);
+    margin-bottom: 30px;
+    position: relative; /* Needed for toggle button positioning */
+    z-index: 5; /* Ensure it stays above the main background */
+}
+
+#rtl-toggle {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    background: #e0e0e0;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background 0.2s;
+}
+
+#rtl-toggle:hover {
+    background: #ccc;
+}
+
+.chat-window {
+    height: 350px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: var(--loreal-light);
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.message-user {
+    background-color: #e6e6ff; /* Light blue/purple */
+    margin-left: auto;
+    text-align: right;
+}
+
+.message-ai {
+    background-color: #e0ffe0; /* Light green */
+    margin-right: auto;
+    text-align: left;
+}
+
+.message-ai strong {
+    color: var(--loreal-red);
+}
+
+.message-user strong {
+    color: #4a4a98; /* Darker blue */
+}
+
+.loading-indicator {
+    opacity: 0.7;
+    font-style: italic;
+}
+
+.chat-form {
+    display: flex;
+    gap: 10px;
+}
+
+#userInput {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+#sendBtn {
+    background-color: var(--loreal-dark);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#sendBtn:hover {
+    background-color: #333;
+}
+
+/* Citation Link Styling */
+.citation {
+    color: var(--loreal-red);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.citation:hover {
+    text-decoration: underline;
+}
+
+
+/* --- Footer --- */
+.site-footer {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white; /* Ensure footer has a solid background over the page image */
+    z-index: 10; /* Ensure it stays above other content */
+    position: relative;
+}
+
+.site-footer nav a {
+    color: #666;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.site-footer nav a:hover {
+    color: var(--loreal-red);
+}
+
+
+/* ======================================================= */
+/* --- RTL Language Support Styles (5 pts) --- */
+/* ======================================================= */
+
+/* Base direction override */
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+/* 1. Header/Branding Flipping */
+[dir="rtl"] .site-header {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .logo {
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+/* 2. Search Section Flipping */
+[dir="rtl"] .search-section {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .search-field-wrapper .fa-magnifying-glass {
+    left: auto;
+    right: 10px;
+}
+
+[dir="rtl"] #productSearchInput {
+    padding: 10px 35px 10px 10px;
+}
+
+/* 3. Products Grid and Cards Flipping */
+[dir="rtl"] .product-info {
+    text-align: right; 
+}
+
+/* 4. Selected Products List (Tags) Flipping */
+[dir="rtl"] #selectedProductsList {
+    justify-content: flex-end;
+}
+
+[dir="rtl"] .selected-product-tag {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+[dir="rtl"] .remove-tag-btn {
+    order: -1; 
+    margin-right: 8px; 
+    margin-left: 0;
+}
+
+/* 5. Chat Window Flipping */
+[dir="rtl"] #rtl-toggle {
+    right: auto;
+    left: 20px;
+}
+
+[dir="rtl"] .chat-window {
+    text-align: right;
+}
+
+[dir="rtl"] .message-user {
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right; 
+}
+
+[dir="rtl"] .message-ai {
+    margin-right: auto;
+    margin-left: 0;
+    text-align: right; 
+}
+
+/* 6. Chat Form Flipping */
+[dir="rtl"] .chat-form {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] #userInput {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+/* 7. Footer Flipping */
+[dir="rtl"] .site-footer nav a {
+    margin-left: 0;
+    margin-right: 15px;
 }
